@@ -1,12 +1,8 @@
 # README
 
-
 # hand-gesture-recognition-using-mediapipe
 Estimate hand pose using MediaPipe(Python version).<br> This is a sample program that recognizes hand signs and finger gestures with a simple MLP using the detected key points.
-<br>
-![1st](https://github.com/user-attachments/assets/c22564a6-ecd3-46ef-b496-f2b483f1d824)
-
-
+![mqlrf-s6x16](https://user-images.githubusercontent.com/37477845/102222442-c452cd00-3f26-11eb-93ec-c387c98231be.gif)
 
 This repository contains the following contents.
 * Sample program
@@ -18,7 +14,8 @@ This repository contains the following contents.
 # Requirements
 * mediapipe 0.8.1
 * OpenCV 3.4.2 or Later
-* Tensorflow 2.3.0 or Later<br>tf-nightly 2.5.0.dev or later (Only when creating a TFLite for an LSTM model)
+* Tensorflow 2.3.0 or Later<br>
+* tf-nightly 2.5.0.dev or later (Only when creating a TFLite for an LSTM model)
 * scikit-learn 0.23.2 or Later (Only if you want to display the confusion matrix)
 * matplotlib 3.3.2 or Later (Only if you want to display the confusion matrix)
 
@@ -112,17 +109,17 @@ Hand sign recognition and finger gesture recognition can add and change training
 
 ### Hand sign recognition training
 #### 1.Learning data collection
-Press "k" to enter the mode to save key points（displayed as 「MODE:Logging Key Point」）<br>
-<img src="https://github.com/user-attachments/assets/9f599a47-4707-4838-8b15-5f9ee867d756" width="60%"><br><br>
+Press "k" to enter the mode to save key points（displayed as MODE:Logging Key Point）<br>
+<img src="https://user-images.githubusercontent.com/37477845/102235423-aa6cb680-3f35-11eb-8ebd-5d823e211447.jpg" width="60%"><br><br>
 If you press "0" to "9", the key points will be added to "model/keypoint_classifier/keypoint.csv" as shown below.<br>
 1st column: Pressed number (used as class ID), 2nd and subsequent columns: Key point coordinates<br>
-<img src="https://github.com/user-attachments/assets/a2f90fd8-2983-4749-8ae3-b2c5083417fd" width="80%"><br><br>
+<img src="https://user-images.githubusercontent.com/37477845/102345725-28d26280-3fe1-11eb-9eeb-8c938e3f625b.png" width="80%"><br><br>
 The key point coordinates are the ones that have undergone the following preprocessing up to ④.<br>
-<img src="https://github.com/user-attachments/assets/736cefe0-b615-4c7b-a9ec-c493908210b7" width="80%">
-<img src="https://github.com/user-attachments/assets/bdd3a517-2bdf-4bae-8cbb-7c4547223aaa" width="80%"><br><br>
+<img src="https://user-images.githubusercontent.com/37477845/102242918-ed328c80-3f3d-11eb-907c-61ba05678d54.png" width="80%">
+<img src="https://user-images.githubusercontent.com/37477845/102244114-418a3c00-3f3f-11eb-8eef-f658e5aa2d0d.png" width="80%"><br><br>
 In the initial state, three types of learning data are included: open hand (class ID: 0), close hand (class ID: 1), and pointing (class ID: 2).<br>
 If necessary, add 3 or later, or delete the existing data of csv to prepare the training data.<br>
-<img src="https://github.com/user-attachments/assets/7f5863f5-a97d-41fb-940c-d669b0af1311" width="25%">　<img src="https://github.com/user-attachments/assets/64f23a41-1392-409b-9a90-023f6b69987f" width="25%">　<img src="https://github.com/user-attachments/assets/b6fc82a8-12f0-49ad-9288-e31ff78c46b2" width="25%">
+<img src="https://user-images.githubusercontent.com/37477845/102348846-d0519400-3fe5-11eb-8789-2e7daec65751.jpg" width="25%">　<img src="https://user-images.githubusercontent.com/37477845/102348855-d2b3ee00-3fe5-11eb-9c6d-b8924092a6d8.jpg" width="25%">　<img src="https://user-images.githubusercontent.com/37477845/102348861-d3e51b00-3fe5-11eb-8b07-adc08a48a760.jpg" width="25%">
 
 #### 2.Model training
 Open "[keypoint_classification.ipynb](keypoint_classification.ipynb)" in Jupyter Notebook and execute from top to bottom.<br>
@@ -130,20 +127,20 @@ To change the number of training data classes, change the value of "NUM_CLASSES 
 
 #### X.Model structure
 The image of the model prepared in "[keypoint_classification.ipynb](keypoint_classification.ipynb)" is as follows.
-<img src="https://github.com/user-attachments/assets/b2b7daee-c875-4fdc-ab5b-a73998ca16a9" width="50%"><br><br>
+<img src="https://user-images.githubusercontent.com/37477845/102246723-69c76a00-3f42-11eb-8a4b-7c6b032b7e71.png" width="50%"><br><br>
 
 ### Finger gesture recognition training
 #### 1.Learning data collection
 Press "h" to enter the mode to save the history of fingertip coordinates (displayed as "MODE:Logging Point History").<br>
-<img src="https://github.com/user-attachments/assets/ee1255d6-13e8-4e57-b426-327896bbd32c" width="60%"><br><br>
+<img src="https://user-images.githubusercontent.com/37477845/102249074-4d78fc80-3f45-11eb-9c1b-3eb975798871.jpg" width="60%"><br><br>
 If you press "0" to "9", the key points will be added to "model/point_history_classifier/point_history.csv" as shown below.<br>
 1st column: Pressed number (used as class ID), 2nd and subsequent columns: Coordinate history<br>
-<img src="https://github.com/user-attachments/assets/b4d4ef3d-ec7b-4538-b7ff-c661b3e513e7" width="80%"><br><br>
+<img src="https://user-images.githubusercontent.com/37477845/102345850-54ede380-3fe1-11eb-8d04-88e351445898.png" width="80%"><br><br>
 The key point coordinates are the ones that have undergone the following preprocessing up to ④.<br>
-<img src="https://github.com/user-attachments/assets/662a0fdb-8062-4d35-bcf6-acd15bc95362" width="80%"><br><br>
+<img src="https://user-images.githubusercontent.com/37477845/102244148-49e27700-3f3f-11eb-82e2-fc7de42b30fc.png" width="80%"><br><br>
 In the initial state, 4 types of learning data are included: stationary (class ID: 0), clockwise (class ID: 1), counterclockwise (class ID: 2), and moving (class ID: 4). <br>
 If necessary, add 5 or later, or delete the existing data of csv to prepare the training data.<br>
-<img src="https://github.com/user-attachments/assets/0c565662-3966-47b8-8d82-d9f1fa7b4bf3" width="20%">　<img src="https://github.com/user-attachments/assets/b4a1c681-a00b-4266-9bfb-9a863d9477b7" width="20%">　<img src="https://github.com/user-attachments/assets/b0b45534-ab4a-4896-8a0c-37dd6eb56d36" width="20%">　<img src="https://github.com/user-attachments/assets/4c3853f3-721e-4c9f-9497-ac2613e33118" width="20%">
+<img src="https://user-images.githubusercontent.com/37477845/102350939-02b0c080-3fe9-11eb-94d8-54a3decdeebc.jpg" width="20%">　<img src="https://user-images.githubusercontent.com/37477845/102350945-05131a80-3fe9-11eb-904c-a1ec573a5c7d.jpg" width="20%">　<img src="https://user-images.githubusercontent.com/37477845/102350951-06444780-3fe9-11eb-98cc-91e352edc23c.jpg" width="20%">　<img src="https://user-images.githubusercontent.com/37477845/102350942-047a8400-3fe9-11eb-9103-dbf383e67bf5.jpg" width="20%">
 
 #### 2.Model training
 Open "[point_history_classification.ipynb](point_history_classification.ipynb)" in Jupyter Notebook and execute from top to bottom.<br>
